@@ -1,6 +1,6 @@
 # Mapping the user-instruction containers in Claude.ai chat and Cowork
 
-*Opus 4.7, observed 2026-04-26. Cowork is in research preview; results may not hold across version changes.*
+*Opus 4.7, observed 2026-04-26 — 17 days after Cowork moved from research preview to general availability ([2026-04-09](https://www.testingcatalog.com/anthropic-launches-claude-cowork-in-general-availability/)). Results may not hold across silent system-prompt updates.*
 
 This post documents four containers Anthropic uses to inject user-supplied instructions into Claude.ai chat and Cowork sessions, and tests how they actually behave on Opus 4.7. Two of the four are missing from the most-cited public extractions ([asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks), [EliFuzz/awesome-system-prompts](https://github.com/EliFuzz/awesome-system-prompts)). The empirical results in §4 confirm two structural-to-behavioural pathways and find one common strength-ranking claim holds only conditionally.
 
@@ -165,6 +165,7 @@ Anthropic's *Understanding Claude's Personalization Features* describes preferen
 ## §7 Limitations
 
 - Snapshot dated 2026-04-26. Anthropic ships system prompt updates without changelog entries; results may not hold next month.
+- Anthropic's own `<application_details>` system prompt block as of 2026-04-26 still describes Cowork as a research preview, despite GA on 2026-04-09 — a concrete example of the prompt-template lag mentioned in the previous bullet.
 - Opus 4.7 only. Sonnet 4.6 / Haiku 4.5 not tested. Smaller models may apply meta-rule conditionals more loosely or strictly.
 - N=2 trials per cell (one cell N=1 where pattern was unambiguous on first trial). Not statistically powered; sampling variance can produce edge results — Q3b is the clearest example.
 - Tests on Cowork desktop client (Windows) and claude.ai web chat. Mobile and direct API not covered. Claude Code is out of scope for this post; Code-repo GitHub Issues are cited because Cowork inherits the `<system-reminder>` injection mechanism from Code, but Code's CLI behaviour is not the subject.
